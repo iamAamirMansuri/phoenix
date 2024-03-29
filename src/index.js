@@ -1,1 +1,2 @@
-export { apihook } from './src/apihook';
+import { apihook } from "./apiHook";
+export {apihook}

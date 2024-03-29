@@ -6,7 +6,7 @@ export const apihook = (initialConfig = {}, autoload = true) => {
     url: initialConfig.url || '',
     method: initialConfig.method || 'GET',
     data: initialConfig.data || null,
-    // Add other axios request configurations if needed
+    headers: initialConfig.headers || {},
   });
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -20,7 +20,6 @@ export const apihook = (initialConfig = {}, autoload = true) => {
 
     try {
       const response = await axios(overrideConfig);
-
       setData(response.data);
       setSuccess(true);
       setLoading(false);
