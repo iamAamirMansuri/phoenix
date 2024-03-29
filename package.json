@@ -1,0 +1,50 @@
+{
+  "name": "phoenix-hook",
+  "version": "1.0.0",
+  "description": "A custom React hook for simplifying API calls.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src --out-dir dist",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamAamirMansuri/phoenix.git"
+  },
+  "keywords": [
+    "react",
+    "hook",
+    "api",
+    "axios",
+    "fetch"
+  ],
+  "files": [
+    "dist"
+  ],
+  "contributors": [
+    {
+      "name": "Aamir mansuri",
+      "email": "iam.aamirmansuri@gamil.com"
+    }
+  ],
+  "author": "Aamir Mansuri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamAamirMansuri/phoenix/issues"
+  },
+  "homepage": "https://github.com/iamAamirMansuri/pheonix#readme",
+  "dependencies": {
+    "axios": "^1.6.8"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
