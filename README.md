@@ -20,25 +20,39 @@ npm install phoenix-hook
 yarn add phoenix-hook
 ```
 
-### How to Use
-First, import the hook in your React component:
-
-``` jsx
-Copy code
-import {useApiHook} from 'phoenix-hook';
-```
 ### Basic Usage
-Here's a simple example to fetch data from an API on component mount:
+
+useApiHook Parameters
+The useApiHook is designed to make API calls with ease while providing built-in state management for your React components. It accepts two parameters to control its behavior:
+
+#### initialConfig (Object): 
+This configuration object defines the settings for the Axios request. It includes:
+
+- url (string): The endpoint URL for the API request.
+- method (string): HTTP method (e.g., 'GET', 'POST', 'PUT'). Defaults to 'GET' if not specified.
+- data (Object): The payload for POST/PUT requests.
+- headers (Object): Any custom headers you wish to include in your request.
+This object allows you to customize the API request according to your needs, utilizing Axios' flexibility directly within your hook.
+
+#### autoload (boolean): 
+A flag to control the automatic fetching behavior when the component mounts.
+
+If true, the hook automatically initiates the API call with the provided initialConfig when the component renders.
+If false, the API call must be manually triggered using the refetch function.
+This parameter provides control over when the data fetching should occur, enabling use cases where an immediate fetch isn't desired or needs to be triggered by a user action.
+
+#### Utilize Prebuilt States
+Import useApiHook in your component to leverage prebuilt states (loading, error, data) for managing API interactions:
 
 ``` jsx
 Copy code
 import React from 'react';
-import {useApiHook} from 'phoenix-hook';
+import { useApiHook } from 'phoenix-hook';
 
 const MyComponent = () => {
   const { data, loading, error, refetch } = useApiHook({
     url: 'https://api.example.com/data',
-  });
+  }, true);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -47,14 +61,42 @@ const MyComponent = () => {
     <div>
       <h1>Data</h1>
       <pre>{JSON.stringify(data, null, 2)}</pre>
-      <button onClick={refetch}>Refetch Data</button>
+      <button onClick={() => refetch()}>Refetch Data</button>
     </div>
   );
 };
 
-export default MyComponent;
+```
+
+#### Flexible Data and Error Handling with Promises
+useApiHook also facilitates promise chaining with .then and .catch, enabling flexible data handling and error management:
+
+``` jsx
+Copy code
+import React, { useEffect } from 'react';
+import { useApiHook } from 'phoenix-hook';
+
+const MyComponent = () => {
+  const { refetch } = useApiHook({
+    url: 'https://api.example.com/data',
+  }, false); // Disable autoload to manually trigger the fetch
+
+  useEffect(() => {
+    refetch().then(data => {
+      console.log('Data fetched:', data);
+      // Process the fetched data
+    }).catch(error => {
+      console.error('Fetching error:', error);
+      // Handle error here
+    });
+  }, [refetch]);
+
+  // Render component UI
+};
+
 
 ```
+
 ### Configuring Request
 You can easily customize the request method, headers, and body:
 
