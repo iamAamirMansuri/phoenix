@@ -1,10 +1,10 @@
-import { useState, useCallback, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useCallback, useEffect } from "react";
+import axios from "axios";
 
-export const apihook = (initialConfig = {}, autoload = true) => {
+export const useApiHook = (initialConfig = {}, autoload = true) => {
   const [config, setConfig] = useState({
-    url: initialConfig.url || '',
-    method: initialConfig.method || 'GET',
+    url: initialConfig.url || "",
+    method: initialConfig.method || "GET",
     data: initialConfig.data || null,
   });
   const [data, setData] = useState(null);
@@ -15,15 +15,15 @@ export const apihook = (initialConfig = {}, autoload = true) => {
   const callApi = useCallback(() => {
     setLoading(true);
     return axios(config)
-      .then(response => {
+      .then((response) => {
         setData(response.data);
         setSuccess(true);
-        return response.data; // Ensure data is returned for chaining
+        return response.data; // For chaining
       })
-      .catch(err => {
-        setError(err.response ? err.response.data : err.message);
+      .catch((error) => {
+        setError(error.response ? error.response.data : error.message);
         setSuccess(false);
-        throw err; // Ensure errors are re-thrown for chaining
+        throw error; // For chaining
       })
       .finally(() => setLoading(false));
   }, [config]);
@@ -35,9 +35,8 @@ export const apihook = (initialConfig = {}, autoload = true) => {
   }, [callApi, autoload]);
 
   const refetch = useCallback(() => {
-    callApi();
+    return callApi();
   }, [callApi]);
 
   return { data, loading, success, error, refetch, setConfig };
 };
-

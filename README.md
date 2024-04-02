@@ -25,7 +25,7 @@ First, import the hook in your React component:
 
 ``` jsx
 Copy code
-import {apihook} from 'phoenix-hook';
+import {useApiHook} from 'phoenix-hook';
 ```
 ### Basic Usage
 Here's a simple example to fetch data from an API on component mount:
@@ -33,10 +33,10 @@ Here's a simple example to fetch data from an API on component mount:
 ``` jsx
 Copy code
 import React from 'react';
-import {apihook} from 'phoenix-hook';
+import {useApiHook} from 'phoenix-hook';
 
 const MyComponent = () => {
-  const { data, loading, error, refetch } = apihook({
+  const { data, loading, error, refetch } = useApiHook({
     url: 'https://api.example.com/data',
   });
 
@@ -60,7 +60,7 @@ You can easily customize the request method, headers, and body:
 
 ``` javascript
 Copy code
-const { data, loading, error, setConfig, refetch } = apihook();
+const { data, loading, error, setConfig, refetch } = useApiHook();
 
 // To set up a POST request
 setConfig({
