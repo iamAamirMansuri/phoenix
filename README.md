@@ -1,6 +1,6 @@
-# pheonix-hook
+# phoenix-hook
 
-A custom React hook for simplifying API calls in your React applications. `pheonix-hook` provides an easy way to fetch data from an API, including handling loading states, errors, and updating data, with built-in support for GET, POST, PUT, and other HTTP methods. It leverages axios for making HTTP requests and is designed to make API integration in React components more intuitive and less boilerplate-heavy.
+A custom React hook for simplifying API calls in your React applications. `phoenix-hook` provides an easy way to fetch data from an API, including handling loading states, errors, and updating data, with built-in support for GET, POST, PUT, and other HTTP methods. It leverages axios for making HTTP requests and is designed to make API integration in React components more intuitive and less boilerplate-heavy.
 
 ## Requirements
 
@@ -11,13 +11,13 @@ This package lists `react` as a `peerDependency`, ensuring that it uses the Reac
 
 ## Installation
 
-Install `pheonix-hook` using npm or yarn:
+Install `phoenix-hook` using npm or yarn:
 
 ```bash
-npm install pheonix-hook
+npm install phoenix-hook
 
 # or
-yarn add pheonix-hook
+yarn add phoenix-hook
 ```
 
 ### How to Use
@@ -25,7 +25,7 @@ First, import the hook in your React component:
 
 ``` jsx
 Copy code
-import {apihook} from 'pheonix-hook';
+import {apihook} from 'phoenix-hook';
 ```
 ### Basic Usage
 Here's a simple example to fetch data from an API on component mount:
@@ -33,7 +33,7 @@ Here's a simple example to fetch data from an API on component mount:
 ``` jsx
 Copy code
 import React from 'react';
-import {apihook} from 'pheonix-hook';
+import {apihook} from 'phoenix-hook';
 
 const MyComponent = () => {
   const { data, loading, error, refetch } = apihook({
