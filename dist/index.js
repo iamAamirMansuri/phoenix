@@ -3,10 +3,10 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "apihook", {
+Object.defineProperty(exports, "useApiHook", {
   enumerable: true,
   get: function get() {
-    return _apiHook.apihook;
+    return _useApiHook.useApiHook;
   }
 });
-var _apiHook = require("./apiHook");
+var _useApiHook = require("./useApiHook");

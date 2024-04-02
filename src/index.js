@@ -1,2 +1,2 @@
-import { apihook } from "./apiHook";
-export {apihook}
+import { useApiHook } from "./useApiHook";
+export {useApiHook}
