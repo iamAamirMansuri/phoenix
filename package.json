@@ -1,6 +1,6 @@
 {
   "name": "phoenix-hook",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A custom React hook for simplifying API calls.",
   "main": "dist/index.js",
   
