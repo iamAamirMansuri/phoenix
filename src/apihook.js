@@ -12,23 +12,20 @@ export const apihook = (initialConfig = {}, autoload = true) => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
-  const callApi = useCallback(async (overrideConfig = config) => {
+  const callApi = useCallback(() => {
     setLoading(true);
-    setError(null);
-    setSuccess(false);
-
-    try {
-      const response = await axios(overrideConfig);
-      setData(response.data);
-      setSuccess(true);
-      setLoading(false);
-      return Promise.resolve(response.data);
-    } catch (error) {
-      setError(error.response ? error.response.data : error.message);
-      setLoading(false);
-      setSuccess(false);
-      return Promise.reject(error);
-    }
+    return axios(config)
+      .then(response => {
+        setData(response.data);
+        setSuccess(true);
+        return response.data; // Ensure data is returned for chaining
+      })
+      .catch(err => {
+        setError(err.response ? err.response.data : err.message);
+        setSuccess(false);
+        throw err; // Ensure errors are re-thrown for chaining
+      })
+      .finally(() => setLoading(false));
   }, [config]);
 
   useEffect(() => {
